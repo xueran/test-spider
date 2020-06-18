@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^14.0.13",
+    "chalk": "^4.1.0",
     "jsdom": "^16.2.2",
     "moment": "^2.26.0",
     "ts-node": "^8.10.2",
