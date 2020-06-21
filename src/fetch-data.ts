@@ -1,7 +1,13 @@
 import fetch from 'xfetch';
 
-export async function fetchData(type: string = '') {
-    return fetch(`http://localhost:3000/${type}`, {
+const URL = {
+    'html': 'http://localhost:3000/',
+    'json': 'http://localhost:3000/json',
+    'text': 'http://localhost:3000/list',
+};
+
+export async function fetchData(type: string = 'html') {
+    return fetch(`${URL[type]}`, {
         "headers": {
         "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
         "accept-language": "ja-jp;q=0.9,ja;q=0.8,en;q=0.7",

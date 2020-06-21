@@ -1,4 +1,11 @@
-import { init } from './init';
+/**
+ * @file 入口
+ */
 
+import {init} from './init';
 
-init();
+let type = process.argv[2] || 'html';
+
+init({
+    type: type
+});

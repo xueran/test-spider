@@ -5,6 +5,8 @@
 import { JSDOM } from 'jsdom';
 
 export function htmlParser(htmlContent: string): Array<string> {
+    if (!htmlContent) return [];
+    
     const dom = new JSDOM(htmlContent);
     const items: NodeList = dom.window.document.querySelectorAll(".item-id");
     const itemsArr: Array<HTMLElement> = Array.prototype.slice.call(items);

@@ -1,5 +1,5 @@
 /**
- * @file 操作数据
+ * @file 数据存取操作
  */
 
 import {resolve} from 'path';
@@ -18,14 +18,19 @@ export class Data {
         this.existData = readFileSync(FILE_PATH_MAP['existence']).toString();
     }
 
-    private write(filename: string, text: string, flag: string = 'a') {
+    private write(filename: string, text: string, flag: string = 'a'): Promise<void> {
         const path = FILE_PATH_MAP[filename];
-        if (!path) {
-            error(`no such file ${filename}`);
-            return;
-        }
-        writeFileSync(path, text, {
-            flag: flag
+
+        return new Promise((resolve, reject) => {
+            if (!path) {
+                error(`no such file ${filename}`);
+                reject();
+                return;
+            }
+            writeFileSync(path, text, {
+                flag: flag
+            });
+            resolve();
         });
     }
 
@@ -41,10 +46,10 @@ export class Data {
     }
 
     private clean() {
-        this.write('output', '', 'w');
+        return this.write('output', '', 'w');
     }
 
-    getDiff(itemsList): string {
+    getDiff(itemsList: Array<string>): string {
         let me = this;
         let ret: string[] = itemsList.filter(id => {
             return me.isNew(id);
@@ -52,16 +57,15 @@ export class Data {
         return ret.join('\n');
     }
 
-    restore(text: string) {
-        return Promise.resolve()
-            .then(() => this.clean())
-            .then(() => this.write('existence', text))
-            .then(() => {
-                this.write('output', text);
-                info('发现新内容，存储成功');
-            })
-            .catch((err: Error) => {
-                error(`存储失败 ${err.stack}`);
-            });
+    restore(text: string): Promise<void> {
+        return this.clean().then(() => {
+            return this.write('existence', text);
+        }).then(() => {
+            return this.write('output', text);
+        }).then(() => {
+            info('发现新内容，存储成功');
+        }).catch((err: Error) => {
+            error(`存储失败 ${err.stack}`);
+        });
     }
 }
