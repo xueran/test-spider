@@ -2,9 +2,9 @@
  * @file 内容解析分发
  */
 
-import {htmlParser} from './html-parser';
-import {jsonParser} from './json-parser';
-import {textParser} from './text-parser';
+import {htmlParser} from './parser/html-parser';
+import {jsonParser} from './parser/json-parser';
+import {textParser} from './parser/text-parser';
 import {warning} from './logging';
 
 export function parser(type: string, data: string): Array<string> {
