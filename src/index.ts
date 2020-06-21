@@ -1,5 +1,5 @@
 /**
- * @file 入口
+ * @file 入口文件
  */
 
 import {init} from './init';

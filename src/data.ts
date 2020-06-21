@@ -18,19 +18,10 @@ export class Data {
         this.existData = readFileSync(FILE_PATH_MAP['existence']).toString();
     }
 
-    private write(filename: string, text: string, flag: string = 'a'): Promise<void> {
+    private write(filename: string, text: string, flag: string = 'a') {
         const path = FILE_PATH_MAP[filename];
-
-        return new Promise((resolve, reject) => {
-            if (!path) {
-                error(`no such file ${filename}`);
-                reject();
-                return;
-            }
-            writeFileSync(path, text, {
-                flag: flag
-            });
-            resolve();
+        writeFileSync(path, text, {
+            flag: flag
         });
     }
 
@@ -46,7 +37,7 @@ export class Data {
     }
 
     private clean() {
-        return this.write('output', '', 'w');
+        this.write('output', '', 'w');
     }
 
     getDiff(itemsList: Array<string>): string {
@@ -58,14 +49,13 @@ export class Data {
     }
 
     restore(text: string): Promise<void> {
-        return this.clean().then(() => {
-            return this.write('existence', text);
-        }).then(() => {
-            return this.write('output', text);
-        }).then(() => {
-            info('发现新内容，存储成功');
-        }).catch((err: Error) => {
-            error(`存储失败 ${err.stack}`);
-        });
+        return Promise.resolve()
+            .then(() => this.clean())
+            .then(() => this.write('existence', text))
+            .then(() => this.write('output', text))
+            .then(() => info('发现新内容，存储成功'))
+            .catch((err: Error) => {
+                error(`存储失败 ${err.stack}`);
+            });
     }
 }

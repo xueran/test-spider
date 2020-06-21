@@ -16,7 +16,7 @@ export function parser(type: string, data: string): Array<string> {
         case 'text':
             return textParser(data);
         default:
-            warning(`不合法的type ${type}`)
+            warning(`不合法的type ${type}`);
             return [];
     }
 }
