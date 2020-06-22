@@ -18,6 +18,12 @@ export class Data {
         this.existData = readFileSync(FILE_PATH_MAP['existence']).toString();
     }
 
+    /**
+     * 写入文件
+     * @param filename 文件名称
+     * @param text 写入内容文本
+     * @param flag flag
+     */
     private write(filename: string, text: string, flag: string = 'a') {
         const path = FILE_PATH_MAP[filename];
         writeFileSync(path, text, {
@@ -25,6 +31,10 @@ export class Data {
         });
     }
 
+    /**
+     * 判断是否为新内容
+     * @param text 文本内容
+     */
     private isNew(text: string): boolean {
         if (!text) {
             warning('is empty string');
@@ -36,10 +46,17 @@ export class Data {
         return false;
     }
 
+    /**
+     * 清空output内容
+     */
     private clean() {
         this.write('output', '', 'w');
     }
 
+    /**
+     * 获取新增diff内容
+     * @param itemsList 内容list
+     */
     getDiff(itemsList: Array<string>): string {
         let me = this;
         let ret: string[] = itemsList.filter(id => {
@@ -48,6 +65,10 @@ export class Data {
         return ret.join('\n');
     }
 
+    /**
+     * 存储
+     * @param text 需要存储的文本
+     */
     restore(text: string): Promise<void> {
         return Promise.resolve()
             .then(() => this.clean())

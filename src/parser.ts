@@ -7,6 +7,11 @@ import {jsonParser} from './parser/json-parser';
 import {textParser} from './parser/text-parser';
 import {warning} from './logging';
 
+/**
+ * 内容解析
+ * @param type 内容类型
+ * @param data 内容数据
+ */
 export function parser(type: string, data: string): Array<string> {
     switch(type) {
         case 'html':
