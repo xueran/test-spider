@@ -3,10 +3,10 @@
  */
 
 interface Data {
-    list: Array<string>;
+    list: string[];
     [key: string]: any;
 }
-export function jsonParser(data: string): Array<string> {
+export function jsonParser(data: string): string[] {
     if (!data) return [];
     let json: Data = JSON.parse(data);
 

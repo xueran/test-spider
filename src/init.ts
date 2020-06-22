@@ -10,7 +10,7 @@ interface ProcessOptions{
 export async function init(options: ProcessOptions) {
     let type: string = options.type;
     let content: string = await fetchData(type);
-    let itemsList: Array<string> = parser(type, content);
+    let itemsList: string[] = parser(type, content);
 
     if (!itemsList.length) {
         error(`type = ${type} 解析数据失败`);

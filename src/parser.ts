@@ -12,7 +12,7 @@ import {warning} from './logging';
  * @param type 内容类型
  * @param data 内容数据
  */
-export function parser(type: string, data: string): Array<string> {
+export function parser(type: string, data: string): string[] {
     switch(type) {
         case 'html':
             return htmlParser(data);
