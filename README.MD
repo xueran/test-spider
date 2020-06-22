@@ -1,3 +1,5 @@
+[![Coveralls](https://coveralls.io/repos/github/xueran/test-spider/badge.svg?branch=master)](https://coveralls.io/xueran/test-spider?branch=master)
+
 # 说明
 
 ## 背景

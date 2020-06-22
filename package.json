@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "coveralls": "jest --coverage && cat coverage/lcov.info | coveralls"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "@types/jest": "^26.0.0",
     "@types/node": "^14.0.13",
     "chalk": "^4.1.0",
+    "coveralls": "^3.1.0",
     "jest": "^26.0.1",
     "jsdom": "^16.2.2",
     "moment": "^2.26.0",
