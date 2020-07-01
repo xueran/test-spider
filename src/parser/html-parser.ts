@@ -11,7 +11,7 @@ export function htmlParser(htmlContent: string): string[] {
     const items: NodeList = dom.window.document.querySelectorAll(".item-id");
     const itemsArr: Array<HTMLElement> = Array.prototype.slice.call(items);
 
-    let idLists: string[] = [];
+    let idLists = [];
     itemsArr.forEach(item => {
         idLists.push(item.textContent);
     });

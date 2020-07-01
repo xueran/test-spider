@@ -39,7 +39,7 @@ export function warning(text: string) {
  * @param text 日志文本
  */
 export function error(text: string) {
-    let msg: string = `[error] ${text}\n`;
+    let msg = `[error] ${text}\n`;
     writeLog(msg, ERROR_LOG_PATH);
     log(chalk.red(msg));
 }
@@ -49,7 +49,7 @@ export function error(text: string) {
  * @param text 日志文本
  */
 export function info(text: string) {
-    let msg: string = `[info] ${text}\n`;
+    let msg = `[info] ${text}\n`;
     writeLog(msg, INFO_LOG_PATH);
     log(chalk.green(msg));
 }
